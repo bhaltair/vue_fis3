@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>meituan</title>
+	 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" type="text/css" href="css/lyicon.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/zindex.css">
+</head>
+<body>
+
+<div id="app" >
+	<component v-bind:is='view' v-bind:query="query" transition=""></component>
+</div>
+
+<link rel="import" href="views/tpl_home.html?__inline">
+<link rel="import" href="views/tpl_list.html?__inline">
+<link rel="import" href="views/tpl_product.html?__inline">
+<link rel="import" href="views/tpl_reg.html?__inline">
+<link rel="import" href="views/tpl_buy.html?__inline">
+
+
+<script type="text/javascript" src="js/lib/1vue.js"></script>
+<script type="text/javascript" src="js/lib/2index.js"></script>
+<script type="text/javascript" src="3require.js"></script>
+<script type="text/javascript" src="js/components/bootstrap.js"></script>
+
+
+<script>
+require(['js/components/bootstrap.js'], function (main) {})
+</script>
+
+
+
+</body>
+</html>

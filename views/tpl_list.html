@@ -1,0 +1,35 @@
+<script type="text/template" id="tpl_list">
+	<section class="list" id="list">
+		<header class="header">
+			<div class="go-back" v-on:click="goBack"><span class="arrow"><span class="arrow white"></span></span></div>
+			<span class="search" v-on:click='goSearch'><i class='fa-search'></i><br>搜索</span>
+			<a href="#/reg" style="color:#fff"><span class='my'><i class='fa-user'></i><br>我的</span></a>
+			<h1>分类</h1>
+		</header>
+		<div class="goSearch" transition="bounce" v-show='isSearchShow'><input v-model="searchKey" type="text" placeholder="请输入搜索关键字" v-on:keyup.enter="listSearch"><span v-on:click='listSearch'>搜索</span></div>
+		<ul class="list-type clearfix">
+			<li v-for="item in type" v-on:click="changeType(item.key,$event)">
+				<span>{{item.value}}</span>
+			</li>
+		</ul>
+		<ul class="item-list">
+			<li class="clearfix" v-for="item in list | filterBy listKey in 'title' ">
+				<a href="#/product/{{item.id}}">
+					<img v-bind:src="'img/list/' + item.img" alt="">
+					<div class="description">
+						<h2>{{item.title}}</h2>
+						<p>
+							<span class="current-price">{{item.price | price}}</span>
+							<span class="orign-price">{{item.orignPrice | originPrice}}</span>
+							<span class="sales">{{item.sales | sales}}</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="load-more" v-show="other.length" v-on:click="loadMore">
+			<span>查看其他{{other.length}}条团购</span>
+			<span class="arrow"></span>
+		</div>
+	</section>
+</script>

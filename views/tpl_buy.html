@@ -1,0 +1,27 @@
+<script type="text/x-template" id="tpl_buy">
+
+	<section class="buy">
+		<header class="buy_header">
+			<div class="go-back" v-on:click="goback"><span class="arrow"><span class="arrow white"></span></span></div>
+			<h1>提交订单</h1>
+		</header>
+		<div class="content">
+			<h1>单人自助</h1>
+			<mt-cell title="单价:" value="">
+				<span>{{price}}<span>
+			</mt-cell>
+			<mt-cell title="数量:" label="描述信息">
+				<span class="btn" @click="minus">-</span>
+				<input type="text" value="{{num}}">
+				<span class="btn" @click="plus">+</span>
+			</mt-cell>
+			<mt-cell title="总价:" value="">
+				<span>{{price * num}}<span>
+			</mt-cell>
+			<div class="login">
+					<mt-button size="large" type="primary" @click="handleClick">确认</mt-button>
+			</div>
+		</div>
+
+	</section>
+</script>

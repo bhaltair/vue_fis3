@@ -1,0 +1,115 @@
+<script type="text/template" id="tpl_home">
+    <section id="home" class="home">
+		<header class="header">
+			<span class='chooseCity' @click="chooseCity">{{city}}<i class="fa-angle-down"></i></span>
+			<mt-popup
+			  :visible.sync="popupVisible"
+			  position="left">
+				<header class="pop_header">
+					<div class="go-back" v-on:click="pop_goback"><span class="arrow"><span class="arrow white"></span></span></div>
+					<h1>选择城市</h1>
+				</header>
+				<mt-index-list>
+				  <mt-index-section index="A">
+				    <mt-cell title="鞍山" @click="test"></mt-cell>
+				    <mt-cell title="安庆" @click="test"></mt-cell>
+				    <mt-cell title="安康" @click="test"></mt-cell>
+				  </mt-index-section>
+				  <mt-index-section index="B">
+				    <mt-cell title="北京" @click="test"></mt-cell>
+				    <mt-cell title="保定" @click="test"></mt-cell>
+				    <mt-cell title="包头" @click="test"></mt-cell>
+				    <mt-cell title="百色" @click="test"></mt-cell>
+				    <mt-cell title="宝鸡" @click="test"></mt-cell>
+				  </mt-index-section>
+				  <mt-index-section index="C">
+				    <mt-cell title="重庆" @click="test"></mt-cell>
+				    <mt-cell title="成都" @click="test"></mt-cell>
+				    <mt-cell title="长沙" @click="test"></mt-cell>
+				  </mt-index-section>
+				  <mt-index-section index="D">
+				    <mt-cell title="大连" @click="test"></mt-cell>
+				    <mt-cell title="东莞" @click="test"></mt-cell>
+				    <mt-cell title="大庆" @click="test"></mt-cell>
+				  </mt-index-section>
+				  <mt-index-section index="E">
+				    <mt-cell title="鄂州" @click="test"></mt-cell>
+				    <mt-cell title="恩施" @click="test"></mt-cell>
+				    <mt-cell title="峨眉山" @click="test"></mt-cell>
+				  </mt-index-section>
+				  <mt-index-section index="F">
+				    <mt-cell title="福州" @click="test"></mt-cell>
+				    <mt-cell title="佛山" @click="test"></mt-cell>
+				    <mt-cell title="抚顺" @click="test"></mt-cell>
+				  </mt-index-section>
+				</mt-index-list>
+			</mt-popup>
+			<div class="search">
+				<input type="text" placeholder="输入商家/品类/商圈" v-bind:value="" v-on:input="searchText = $event.target.value">
+				<i class='fa-search' id='seacch' onclick='' v-on:click='homeSearch'></i>
+			</div>
+			<a href="#/reg" class="login"><span class="slogin"><i class="fa-user"></i></span></a>
+
+
+		</header>
+	    <mt-swipe :auto="4000" v-bind:class="'lunbo'">
+	      <mt-swipe-item><img src="img/lb/1.jpg" alt=""></mt-swipe-item>
+	      <mt-swipe-item><img src="img/lb/2.jpg" alt=""></mt-swipe-item>
+	      <mt-swipe-item><img src="img/lb/3.jpg" alt=""></mt-swipe-item>
+	    </mt-swipe>
+
+
+	    <mt-swipe :auto="0" v-bind:class="'g-typeList'">
+	      <mt-swipe-item >
+			<ul class="type-list clearfix">
+				<li v-for="item in type " >
+					<a href="#/list/type/{{item.id}}">
+						<img v-bind:src="'img/icon/' + item.url" alt="">
+						<span>{{item.title}}</span>
+					</a>
+				</li>
+			</ul>
+		  </mt-swipe-item>
+	      <mt-swipe-item >
+			<ul class="type-list clearfix">
+				<li v-for="item in type " >
+					<a href="#/list/type/{{item.id}}">
+						<img v-bind:src="'img/icon/' + item.url" alt="">
+						<span>{{item.title}}</span>
+					</a>
+				</li>
+			</ul>
+		  </mt-swipe-item>
+	    </mt-swipe>
+
+
+		<ul class="ad-list clearfix">
+			<li v-for="item in ad">
+				<a href="#product/{{item.id}}">
+					<h3>{{item.title}}</h3>
+					<p>{{item.description}}</p>
+					<img v-bind:src="'./img/ad/' + item.url" alt="">
+				</a>
+			</li>
+		</ul>
+		<ul class="item-list"
+			  v-infinite-scroll="loadMore"
+			  infinite-scroll-disabled="loading"
+			  infinite-scroll-distance="10">
+			<h4>猜你喜欢</h4>
+			<li class="clearfix" v-for="item in list | filterBy realKey in 'title'">
+				<a href="#/product/{{item.id}}">
+					<img v-lazy="'img/list/' + item.img">
+					<div class="description">
+						<h2>{{item.title}}</h2>
+						<p>
+							<span class="current-price">{{item.price | price}}</span>
+							<span class="orign-price">{{item.orignPrice | originPrice}}</span>
+							<span class="sales">{{item.sales | sales}}</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</section>
+</script>

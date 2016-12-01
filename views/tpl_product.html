@@ -1,0 +1,70 @@
+<script type="text/template" id="tpl_product">
+	<section id="product" class="product">
+		<header class="header">
+			<div class="go-back" v-on:click="goBack"><span class="arrow"><span class="arrow white"></span></span></div>
+			<span class="search" @click="showNav"><i class='fa-list'></i><br>导航</span>
+			<span class='my' @click='showStar'><i class='fa-star'></i><br>收藏</span>
+			<h1>团购详情</h1>
+			<div class='toolTip' v-show='isTipShow'>收藏成功</div>
+			<div class="nav-dropdown " v-bind:class="{active : isDropShow}" v-if="isDropShow">
+                <ul>
+                    <li><a class="react"  href="./#12"><i class="fa-home"></i>
+                        首页</a></li>
+                    <li><a class="react"  rel="nofollow" href="http://i.meituan.com/account/"><i class="fa-user"></i>
+                       我的</a></li>
+                    <li><a class="react headSearch"  href="javascript:history.go(-1)"><i class="fa-search"></i>
+                        返回</a></li>
+                </ul>
+            </div>
+		</header>
+
+		<div class="product-image">
+			<img v-bind:src=" 'img/item/' + data.src" v-if="data.src">
+			<h1>{{data.title}}</h1>
+			<p>{{data.description}}</p>
+		</div>
+		<div class="product-price" id='product-price'>
+			<span class="price"><b>{{data.price}}</b>元</span>
+			<span class="orign-price">{{data.orignPrice | originPrice}}</span>
+			<a href="./#buy"><span class="btn">立即购买</span></a>
+
+		</div>
+		<ul class="product-sales clearfix">
+			<li>支持自动退货</li>
+			<li>支持随时退货</li>
+			<li class="black"><i class='fa-user'></i>{{data.sales | sales}}</li>
+		</ul>
+		<div class="product-store module-item">
+			<h3 class="sub-title">店家信息</h3>
+			<div class="content">
+				<p>{{data.storeName}}</p>
+				<p>{{data.storeAdress}}</p>
+			</div>
+			<div class='phone'><i class='fa-phone'></i></div>
+			<div class="item-footer">
+				<p>查看{{data.storeNum}}家分店</p>
+			</div>
+		</div>
+		<div class="product-note module-item">
+			<h3 class="sub-title">购买须知</h3>
+			<div class="content">
+				<ul>
+					<li>
+						<h4>有效期</h4>
+						<p>{{data.validateTime}}</p>
+					</li>
+					<li>
+						<h4>使用时间</h4>
+						<p>{{data.useTime}}</p>
+					</li>
+					<li>
+						<h4>使用规则</h4>
+						<ul class='rules'>
+							<li v-for="item in data.rules">{{item}}</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</script>
